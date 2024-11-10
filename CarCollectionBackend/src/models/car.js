@@ -5,13 +5,15 @@ const carSchema = new mongoose.Schema({
   brand: { type: String, required: true, index: true }, 
   scale: { type: String }, 
   manufacturer: { 
-    name: { type: String, required: true, index: true }, 
-    country: { type: String, required: true }, 
+    name: { type: String,  index: true }, 
+    country: { type: String}, 
     year: { type: Number } 
   },
   year: { type: Number }, 
+  case: { type: String},
   color: { type: String }, 
   photo: { type: String }, 
+  code:{ type: String, index: true },
   tag: { type: String, index: true }, 
   series: {
     name: { type: String, required: true, index: true }, 
