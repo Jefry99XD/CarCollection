@@ -1,0 +1,121 @@
+/* Centra el formulario en la pantalla */
+mat-card {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alineamos a la parte superior para dar más espacio */
+  padding: 2rem;
+  margin: auto;
+  max-width: 600px;
+  background-color: #fafafa; /* Color de fondo suave */
+  border-radius: 8px; /* Bordes redondeados para el card */
+}
+/* Estilo para el título del formulario */
+.form-title {
+  font-size: 24px;
+  margin-bottom: 16px; /* Espacio debajo del título */
+  text-align: center; /* Centra el título */
+}
+
+/* Alinea el botón de envío a la izquierda para que ocupe la fila completa */
+button {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* Estilos generales para los panels */
+mat-expansion-panel {
+  margin-bottom: 16px; /* Espacio entre los paneles */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  border-radius: 8px;
+}
+
+mat-expansion-panel-header {
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+mat-expansion-panel-header .mat-panel-title {
+  padding: 0.5rem; /* Espacio extra alrededor del título */
+}
+
+/* Espacio entre el header y los campos dentro de cada sección */
+mat-expansion-panel .section {
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* Espaciado entre campos dentro de cada sección */
+.section mat-form-field {
+  width: 100%;
+  margin-bottom: 16px; /* Espacio entre los campos */
+}
+
+/* Estilo para los campos de formulario (input y select) */
+mat-form-field mat-label {
+  font-size: 14px; /* Tamaño de fuente más pequeño para las etiquetas */
+  font-weight: 400;
+  color: #333;
+}
+
+mat-form-field input, mat-form-field mat-select {
+  font-size: 16px; /* Asegura que el texto en los campos sea legible */
+}
+
+/* Los campos tendrán un placeholder que indique el ejemplo de lo que tienen que poner */
+mat-form-field input::placeholder,
+mat-form-field mat-select::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Estilos para el mat-select, asegurando que se vea bien */
+mat-select {
+  font-size: 16px;
+}
+
+mat-select .mat-select-trigger {
+  height: 56px;
+  padding: 0 12px;
+}
+
+/* Añadir espaciado entre el header y el primer campo del formulario */
+mat-expansion-panel .section mat-form-field:first-child {
+  margin-top: 16px;
+}
+
+/* Si es necesario ajustar el margen inferior de algunos campos */
+mat-form-field:last-child {
+  margin-bottom: 0;
+}
+
+/* Añadir más espacio entre los campos de cada sección */
+.section mat-form-field {
+  margin-bottom: 16px;
+}
+
+/* Colocar un fondo sutil y bordes redondeados en los campos */
+mat-form-field {
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+/* Coloca una sombra en el botón de envío */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+

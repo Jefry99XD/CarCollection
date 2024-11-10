@@ -1,0 +1,22 @@
+
+{
+  "name": "20 toyota tacoma",
+  "brand": "Hot Wheels",
+  "scale": "1:64",
+  "manufacturer": {
+    "name": "Toyota",
+    "country": "Japan",
+    "year": 2020
+  },
+  "year": 2024,
+  "case": "L",
+  "color": "Sky Blue",
+  "photo": "https://example.com/ford_mustang.jpg",
+  "code": "htb27-n7c5",
+  "tag": "Basic",
+  "series": {
+    "name": "HW DIRT",
+    "number": 4
+  },
+  "__v": 0
+}
