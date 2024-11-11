@@ -77,6 +77,11 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
+          <mat-label>Notas</mat-label>
+          <textarea matInput formControlName="annotation"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
           <mat-label>Foto</mat-label>
           <input matInput formControlName="photo">
         </mat-form-field>
@@ -113,8 +118,9 @@
           <input matInput formControlName="number">
         </mat-form-field>
       </div>
+
     </mat-expansion-panel>
 
-    <button mat-raised-button color="primary" type="submit">Agregar Carro</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" type="submit">Agregar Carro</button>
   </form>
 </mat-card>

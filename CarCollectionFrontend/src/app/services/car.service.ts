@@ -8,12 +8,17 @@ import { Car } from '../interfaces/car.model';
 })
 export class CarService {
 
-  private apiUrl = 'http://localhost:3000/api/car/addCar';  // Ruta de tu API
+  private apiUrl = 'http://localhost:3000/api/car/';  // Ruta de tu API
 
   constructor(private http: HttpClient) {}
-
-  // Método para crear un nuevo carro
   createCar(car: Car): Observable<Car> {
-    return this.http.post<Car>(this.apiUrl, car);
+    return this.http.post<Car>(this.apiUrl + `addCar`, car);
+  }
+
+  getCars(): Observable<Car[]> {
+    return this.http.get<Car[]>(this.apiUrl + `getCars`);
+  }
+  uploadCsv(formData: FormData): Observable<any> {
+    return this.http.post(this.apiUrl + 'uploadCsv', formData);
   }
 }

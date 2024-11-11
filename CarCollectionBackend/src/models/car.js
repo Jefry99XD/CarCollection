@@ -17,8 +17,9 @@ const carSchema = new mongoose.Schema({
   tag: { type: String, index: true }, 
   series: {
     name: { type: String, required: true, index: true }, 
-    number: { type: Number, required: true } 
-  }
+    number: { type: Number } 
+  },
+  annotation : {type: String}
 });
 
 carSchema.index({ brand: 1, manufacturer: 1 }); 

@@ -15,8 +15,6 @@ export class AddCarComponent {
   constructor(private fb: FormBuilder, private store: Store) {
     this.carForm = this.createCarForm();
   }
-
-
   createCarForm(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
@@ -33,6 +31,7 @@ export class AddCarComponent {
       photo: [''],
       code: [''],
       tag: [''],
+      annotation: [''],
       series: this.fb.group({
         name: ['', Validators.required],
         number: ['', Validators.required]
@@ -47,10 +46,11 @@ export class AddCarComponent {
     { brand: 'Maisto' }
   ];
   onSubmit() {
-    if (this.carForm.valid) {
+    if(this.carForm.valid){
       const newCar: Car = this.carForm.value;
       this.store.dispatch(createCar({ car: newCar }));
     }
+     
   }
 
 }

@@ -10,16 +10,18 @@ export interface Manufacturer {
   }
   
   export interface Car {
+    id?: string;
     name: string;
     brand: string;
     scale?: string;
-    manufacturer: Manufacturer;
+    manufacturer?: Manufacturer;
     year?: number;
     case?: string;
     color?: string;
     photo?: string;
     code?: string;
     tag?: string;
+    annotation?: string;
     series: Series;
   }
   

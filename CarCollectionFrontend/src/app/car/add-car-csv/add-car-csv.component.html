@@ -1,0 +1,4 @@
+<form (submit)="onFileSubmit($event)">
+  <input type="file" (change)="onFileSelected($event)" />
+  <button type="button" (click)="onFileSubmit()">Subir Archivo CSV</button>
+</form>

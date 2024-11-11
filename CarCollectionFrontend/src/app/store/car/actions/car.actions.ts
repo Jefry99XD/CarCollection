@@ -15,3 +15,15 @@ export const createCarFailure = createAction(
   '[Car] Create Car Failure',
   props<{ error: any }>()
 );
+
+export const loadCars = createAction('[Car] Load Cars');
+
+export const loadCarsSuccess = createAction(
+  '[Car] Load Cars Success',
+  props<{ cars: Car[] }>()
+);
+
+export const loadCarsFailure = createAction(
+  '[Car] Load Cars Failure',
+  props<{ error: string }>()
+);

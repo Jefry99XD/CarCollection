@@ -1,5 +1,7 @@
 const Car = require('../models/car'); // Asegúrate de que la ruta sea correcta
-
+const path = require('path');
+const fs = require('fs');
+const csv = require('csv-parser');
 // Crear un nuevo coche
 exports.createCar = async (req, res) => {
   try {
@@ -49,6 +51,68 @@ exports.updateCar = async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 };
+
+exports.uploadCsv = async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ message: 'No file uploaded.' });
+  }
+  
+
+  const filePath = path.join(__dirname, '..', 'uploads', req.file.filename); // Ruta completa al archivo cargado
+  const cleanedFilePath = filePath.replace('\\src', '');
+
+  const cars = [];
+
+  // Leer y procesar el archivo CSV
+  fs.createReadStream(filePath)
+    .pipe(csv()) // Usamos csv-parser para procesar el archivo CSV
+    .on('data', async (row) => {
+      // Procesar cada fila del CSV
+
+      // Aquí hacemos el mapeo de los datos, ignorando "TIPO" como mencionaste
+      const carData = {
+        name: row.name || 'na',
+        brand: row.brand || 'na',
+        color: row.COLOR || 'na',
+        case: row.CASE || 'na',
+        tag: row.tag || 'na',
+        photo: row.photo || 'na',
+        annotation: row.annotation || 'na',  // Agregar el campo de anotación
+        year: row.year || 2020, // Si no hay año, poner uno por defecto
+        code: row.code || 'NA', // Si no hay código, asignar NA
+        series: {
+          name: row.SERIE || 'Unknown Series', // Asignar nombre de serie
+          number: row.seriesNumber || 0, // Asignar número de serie
+        },
+        manufacturer: {
+          name: row.manufacturer || 'Unknown Manufacturer', // Asignar nombre del fabricante
+          country: row.manufacturerCountry || 'Unknown Country', // País del fabricante
+          year: row.manufacturerYear || 2020, // Año de fabricación si se tiene
+        }
+      };
+
+      // Crear el objeto de coche
+      const car = new Car(carData);
+      cars.push(car); // Guardar temporalmente el coche en el array
+    })
+    .on('end', async () => {
+      // Una vez que el CSV ha sido procesado, guardamos los coches en la base de datos
+      try {
+        await Car.insertMany(cars); // Insertar todos los coches a la vez
+        return res.status(200).json({ message: 'Cars uploaded successfully!' });
+      } catch (error) {
+        return res.status(500).json({ message: 'Error saving cars to the database.', error: error.message });
+      } finally {
+        // Borrar el archivo después de procesarlo
+        fs.unlinkSync(filePath); // Eliminar el archivo cargado
+      }
+    })
+    .on('error', (error) => {
+      return res.status(500).json({ message: 'Error processing the CSV file.', error: error.message });
+    });
+};
+
+
 
 // Borrar un coche por ID
 exports.deleteCar = async (req, res) => {
