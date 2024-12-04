@@ -20,7 +20,12 @@ import { CarEffects } from './store/car/effects/car.effect';
 import { carReducer } from './store/car/reducer/car.reducer';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AddCarCsvComponent } from './car/add-car-csv/add-car-csv.component';  // Para la paginación
+import { AddCarCsvComponent } from './car/add-car-csv/add-car-csv.component';
+import { LoginComponent } from './user/login/login.component';
+import { CreateAccountComponent } from './user/create-account/create-account.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { NavbarComponent } from './menu/navbar/navbar.component';
+import { HomeComponent } from './menu/home/home.component';  // Para la paginación
 
 
 
@@ -31,7 +36,12 @@ import { AddCarCsvComponent } from './car/add-car-csv/add-car-csv.component';  /
     AddCarComponent,
     CarViewComponent,
     CarComponent,
-    AddCarCsvComponent
+    AddCarCsvComponent,
+    LoginComponent,
+    CreateAccountComponent,
+    ProfileComponent,
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

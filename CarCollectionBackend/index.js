@@ -16,6 +16,9 @@ connectDB();
 const carRoutes = require('./src/routes/carRoute.js');
 app.use('/api/car/', carRoutes);
 
+const userRoutes = require('./src/routes/userRoute.js');
+app.use('/api/user/', userRoutes);
+
 app.listen(port, host, () => {
     console.log(`Servidor escuchando en http://${host}:${port}`);
 });
