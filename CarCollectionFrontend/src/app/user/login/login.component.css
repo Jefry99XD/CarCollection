@@ -1,0 +1,60 @@
+.login-card {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Asegura que el contenido se centre en el contenedor */
+}
+
+.login-image {
+  flex: 1;
+  padding-right: 1rem;
+
+  img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 8px;
+  }
+}
+
+.login-form {
+  flex: 2;
+  text-align: center; /* Centra el contenido de login-form, incluyendo el título */
+}
+
+.mat-card-title {
+  margin-bottom: 1rem;  /* Espacio entre el título y el formulario */
+  text-align: center;   /* Centra el título */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.login-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+  button {
+    width: 100%;
+  }
+}
+
+.register {
+  text-align: center;
+  margin-top: 1rem;
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+}

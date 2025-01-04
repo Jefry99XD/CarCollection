@@ -1,0 +1,10 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .main-content {
+    height: calc(100vh - 64px); /* Altura total menos la barra de navegación */
+    overflow-y: auto; /* Habilita scroll si el contenido es extenso */
+  }
+  

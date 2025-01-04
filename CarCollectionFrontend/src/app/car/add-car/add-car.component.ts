@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Car } from 'src/app/interfaces/car.model';
 import { createCar } from 'src/app/store/car/actions/car.actions';
@@ -12,7 +13,9 @@ import { createCar } from 'src/app/store/car/actions/car.actions';
 export class AddCarComponent {
   carForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(private fb: FormBuilder, private store: Store,
+    public dialogRef: MatDialogRef<AddCarComponent>
+  ) {
     this.carForm = this.createCarForm();
   }
   createCarForm(): FormGroup {

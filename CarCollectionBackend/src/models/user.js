@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     photo: {
-        type: Buffer, 
+        type: String, 
         required: false,
     },
     CarCollection:[{

@@ -19,8 +19,7 @@ const upload = multer({ storage: storage });
 
 // Rutas para el CRUD de coches
 router.post('/addCar', carController.createCar); // Crear un coche
-router.get('/getCars', carController.getAllCars); // Obtener todos los coches
-router.get('/getCar/:id', carController.getCarById); // Obtener un coche por ID
+router.post('/getCars', carController.getCarsByUser); // Obtener todos los coches
 router.put('/updateCar/:id', carController.updateCar); // Actualizar un coche por ID
 router.delete('/deleteCar/:id', carController.deleteCar); // Borrar un coche por ID
 

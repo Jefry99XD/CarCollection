@@ -1,27 +1,64 @@
 const Car = require('../models/car'); // Asegúrate de que la ruta sea correcta
+const User = require('../models/user')
+
 const path = require('path');
 const fs = require('fs');
 const csv = require('csv-parser');
 // Crear un nuevo coche
 exports.createCar = async (req, res) => {
   try {
-    const newCar = new Car(req.body);
+    const { userId, ...carData } = req.body;
+
+    // Verifica si el usuario existe
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    // Crea un nuevo coche
+    const newCar = new Car(carData);
     await newCar.save();
+
+    // Agrega el coche a la colección del usuario
+    user.CarCollection.push(newCar._id);
+    await user.save();
+
     return res.status(201).json(newCar);
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
 };
 
-// Obtener todos los coches
-exports.getAllCars = async (req, res) => {
+// Obtener todos los coches de un usuario específico
+exports.getCarsByUser = async (req, res) => {
   try {
-    const cars = await Car.find();
-    return res.status(200).json(cars);
+    const { userId } = req.body;
+    console.log("Received userId:", userId);
+
+    // Verifica si el userId es válido (puedes usar una validación extra si es necesario)
+    if (!userId) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
+
+    // Verifica si el usuario existe en la base de datos
+    const user = await User.findById(userId).populate('CarCollection'); // Asegúrate que 'CarCollection' es el campo correcto
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    // Verifica si el usuario tiene coches en su colección
+    if (!user.CarCollection || user.CarCollection.length === 0) {
+      return res.status(404).json({ message: 'No cars found for this user' });
+    }
+
+    // Retorna la colección de coches del usuario
+    return res.status(200).json(user.CarCollection);
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    console.error(error);
+    return res.status(500).json({ message: 'Error retrieving cars', error: error.message });
   }
 };
+
 
 // Obtener un coche por ID
 exports.getCarById = async (req, res) => {
@@ -36,21 +73,37 @@ exports.getCarById = async (req, res) => {
   }
 };
 
-// Actualizar un coche por ID
 exports.updateCar = async (req, res) => {
   try {
-    const updatedCar = await Car.findByIdAndUpdate(req.params.id, req.body, {
+    const { userId } = req.body; // Recibir el ID del usuario en la solicitud
+    const carId = req.params.id;
+
+    // Buscar al usuario y verificar si el coche está en su colección
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    if (!user.CarCollection.includes(carId)) {
+      return res.status(403).json({ message: 'El coche no pertenece al usuario.' });
+    }
+
+    // Actualizar el coche si pertenece al usuario
+    const updatedCar = await Car.findByIdAndUpdate(carId, req.body, {
       new: true, // Devuelve el documento actualizado
       runValidators: true, // Asegura que se apliquen las validaciones
     });
+
     if (!updatedCar) {
-      return res.status(404).json({ message: 'Coche no encontrado' });
+      return res.status(404).json({ message: 'Coche no encontrado.' });
     }
+
     return res.status(200).json(updatedCar);
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
 };
+
 
 exports.uploadCsv = async (req, res) => {
   if (!req.file) {

@@ -1,1 +1,10 @@
-<p>navbar works!</p>
+<mat-toolbar color="primary" class="estilos">
+        <span class="toolbar-title">TUBA COLLECTORS</span>
+        <span class="spacer"></span>
+        <button mat-button routerLink="/dashboard" routerLinkActive="active">Inicio</button>
+        <button mat-button routerLink="/diecastCollection" routerLinkActive="active">My Collection</button>
+        <button mat-button routerLink="/profile-info" routerLinkActive="active">My Profile</button>
+        <button mat-button routerLink="/users" routerLinkActive="active">Users</button>
+        <button mat-button (click)="logout()">Logout</button>
+      </mat-toolbar>
+      

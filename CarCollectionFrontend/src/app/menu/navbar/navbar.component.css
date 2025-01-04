@@ -1,0 +1,24 @@
+.estilos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .toolbar-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .spacer {
+    flex: 1 1 auto; /* Empuja los botones al final */
+  }
+  .active {
+    font-weight: bold;
+    color: #ffffff; /* Cambia según tu diseño */
+    border-bottom: 2px solid #ffcc00; /* Línea indicadora */
+  }
+  
+  button.mat-button.active {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo sutil */
+  }
+    

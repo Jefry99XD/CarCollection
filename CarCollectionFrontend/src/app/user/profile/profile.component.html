@@ -1,1 +1,20 @@
-<p>profile works!</p>
+<div class="user-profile-container">
+    <div class="user-profile" *ngIf="user; else noData">
+      <img [src]="user.photo" alt="{{ user.username }}'s photo" class="user-photo" />
+      <h2 class="user-name">{{ user.username }}</h2>
+      <p class="user-email"><strong>Email:</strong> {{ user.email }}</p>
+      <p class="user-role"><strong>Role:</strong> {{ user.role }}</p>
+      
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="button">Update Profile</button>
+        <button mat-raised-button color="green" type="button">Send Friend Request</button>
+        <button mat-raised-button color="warn" type="button">Cancel</button>
+        
+      </div>
+    </div>
+  
+    <ng-template #noData>
+      <p class="no-data-message">No user data found.</p>
+    </ng-template>
+  </div>
+  

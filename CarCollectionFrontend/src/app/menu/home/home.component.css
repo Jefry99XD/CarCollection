@@ -1,0 +1,17 @@
+mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que esté encima del contenido */
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  /* Para compensar la altura del navbar */
+  .main-content {
+    margin-top: 64px; /* Cambia este valor según la altura de tu toolbar */
+  }
+  

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AddCarComponent } from './car/add-car/add-car.component';
 import { CarViewComponent } from './car/car-view/car-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,10 +27,10 @@ import { CreateAccountComponent } from './user/create-account/create-account.com
 import { ProfileComponent } from './user/profile/profile.component';
 import { NavbarComponent } from './menu/navbar/navbar.component';
 import { HomeComponent } from './menu/home/home.component';  // Para la paginación
-
-
-
-
+import { RouterModule } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { UsersComponent } from './user/users/users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,10 +42,12 @@ import { HomeComponent } from './menu/home/home.component';  // Para la paginaci
     CreateAccountComponent,
     ProfileComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
+    MatCheckboxModule,
     MatTableModule,
     MatPaginatorModule,
     AppRoutingModule,
@@ -56,6 +59,8 @@ import { HomeComponent } from './menu/home/home.component';  // Para la paginaci
     MatButtonModule,
     MatSelectModule,
     MatCardModule,
+    MatDialogModule,
+    MatToolbarModule,
     MatExpansionModule,
     StoreModule.forRoot({ carState: carReducer }),
     StoreModule.forRoot({ carState: carReducer }),  // Asegúrate de que el reducer esté registrado
