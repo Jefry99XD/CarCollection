@@ -1,20 +1,5 @@
 /* Centra el formulario en la pantalla */
-mat-card {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Alineamos a la parte superior para dar más espacio */
-  padding: 2rem;
-  margin: auto;
-  max-width: 600px;
-  background-color: #fafafa; /* Color de fondo suave */
-  border-radius: 8px; /* Bordes redondeados para el card */
-}
-/* Estilo para el título del formulario */
-.form-title {
-  font-size: 24px;
-  margin-bottom: 16px; /* Espacio debajo del título */
-  text-align: center; /* Centra el título */
-}
+
 
 /* Alinea el botón de envío a la izquierda para que ocupe la fila completa */
 button {
@@ -28,6 +13,22 @@ button {
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
+.two-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacio entre las columnas */
+}
+
+.two-columns .section {
+  flex: 1 1 calc(50% - 10px); /* Hacer que las secciones ocupen el 50% del ancho disponible */
+}
+
+/* Para asegurarse de que los campos no se desborden en pantallas pequeñas */
+@media (max-width: 768px) {
+  .two-columns .section {
+    flex: 1 1 100%; /* En pantallas pequeñas, las secciones se apilan */
+  }
+}
 
 button:hover {
   background-color: #0056b3;
@@ -40,7 +41,16 @@ mat-expansion-panel {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
   border-radius: 8px;
 }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.col {
+  flex: 1;
+  margin: 10px;
+  min-width: 300px;
+}
 mat-expansion-panel-header {
   background-color: #007bff;
   color: white;

@@ -12,4 +12,19 @@
   mat-paginator {
     margin-top: 20px; /* Añade espacio arriba del paginador */
   }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .card {
+    width: 200px;
+    margin: 16px;
+  }
+  
+  mat-card {
+    width: 100%;
+  }
+  
   

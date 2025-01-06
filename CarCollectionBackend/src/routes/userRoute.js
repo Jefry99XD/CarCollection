@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Rutas CRUD básicas
 router.post("/createUser", userController.createUser); // Crear usuario (sin protección)
-router.get("/getUsers", protect, userController.getUsers); // Obtener todos los usuarios
+router.get("/getUsers", userController.getUsers); // Obtener todos los usuarios
 router.get("/getUser/:id", protect, userController.getUserById); // Obtener usuario por ID
 router.put("/updateUser/:id", protect, userController.updateUser); // Actualizar usuario
 router.delete("/deleteUser/:id", protect, userController.deleteUser); // Eliminar usuario

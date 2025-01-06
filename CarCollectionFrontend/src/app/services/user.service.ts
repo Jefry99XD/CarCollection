@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { User } from '../interfaces/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,10 @@ export class UserService {
 
   createAccount(data: { username: string; email: string; password: string , photo:string}): Observable<any> {
     return this.http.post(`${this.apiUrl}/createUser`, data);
+  }  
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl+`/getUsers`);
   }
 
 }

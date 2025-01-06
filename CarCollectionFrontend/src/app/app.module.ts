@@ -31,6 +31,7 @@ import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { UsersComponent } from './user/users/users.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { UsersComponent } from './user/users/users.component';
     ProfileComponent,
     NavbarComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

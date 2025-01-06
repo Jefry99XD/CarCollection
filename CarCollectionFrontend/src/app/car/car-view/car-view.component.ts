@@ -17,6 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class CarViewComponent {
   cars$: Observable<Car[]> = this.store.pipe(select(getAllCars));
   dataSource: MatTableDataSource<Car> = new MatTableDataSource();
+  viewMode: 'table' | 'card' = 'table'; 
   allColumns: string[] = [
     'name', 'brand', 'scale', 'manufacturerName', 'manufacturerCountry', 'manufacturerYear', 
     'year', 'case', 'color', 'photo', 'code', 'tag', 'seriesName', 'seriesNumber', 'annotation'
@@ -70,14 +71,13 @@ export class CarViewComponent {
 
   openAddCarDialog(): void {
     const dialogRef = this.dialog.open(AddCarComponent, {
-      width: '400px',  // Ajusta el tamaño según lo necesites
+      width: '800px',  // Ajusta el tamaño según lo necesites
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
         // Recargar los carros al cerrar el modal exitosamente
         this.store.dispatch(loadCars());  // Actualizar la lista de carros
-      }
+      
     });
   }
 
@@ -92,5 +92,9 @@ export class CarViewComponent {
       column => this.columnVisibility[column]
     );
   }
+  toggleViewMode(): void {
+    this.viewMode = this.viewMode === 'table' ? 'card' : 'table';  // Alternar entre tabla y tarjeta
+  }
+  
 
 }

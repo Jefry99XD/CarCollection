@@ -17,12 +17,26 @@ const createUser = async (req, res) => {
 // Obtener todos los usuarios
 const getUsers = async (req, res) => {
     try {
-        const users = await User.find().select("-password"); // Excluir contraseña
+        const users = await User.aggregate([
+            {
+                $project: {
+                    id: "$_id",
+                    email: 1,
+                    role: 1,
+                    username: 1,
+                    photo: 1,
+                    CarCollectionCount: { $size: "$CarCollection" },
+                    friendsCount: { $size: "$friends" },
+                },
+            },
+        ]);
+
         res.status(200).json(users);
     } catch (error) {
         res.status(500).json({ message: "Error fetching users", error: error.message });
     }
 };
+
 
 // Obtener un usuario por ID
 const getUserById = async (req, res) => {
@@ -132,6 +146,7 @@ const loginUser = async (req, res) => {
                 username: user.username,
                 photo: user.photo,
                 role: user.role,
+                CarCollection: user.CarCollection
             },
         });
     } catch (error) {

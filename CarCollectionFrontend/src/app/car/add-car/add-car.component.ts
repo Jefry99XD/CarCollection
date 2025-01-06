@@ -52,6 +52,7 @@ export class AddCarComponent {
     if(this.carForm.valid){
       const newCar: Car = this.carForm.value;
       this.store.dispatch(createCar({ car: newCar }));
+      this.dialogRef.close();
     }
      
   }

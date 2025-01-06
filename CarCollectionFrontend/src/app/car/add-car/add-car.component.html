@@ -1,125 +1,126 @@
 <mat-card>
   <mat-card-title class="form-title">Agregar Carro a mi Colección</mat-card-title>
   <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
-    <!-- Información General -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Información General</mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="section">
-        <mat-form-field appearance="outline">
-          <mat-label>Nombre</mat-label>
-          <input matInput formControlName="name" required>
-        </mat-form-field>
+    <!-- Información General y Fabricante en dos columnas -->
+    <div class="row">
+      <mat-expansion-panel class="col">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Información General</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="section">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name" required>
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Marca</mat-label>
-          <mat-select formControlName="brand">
-            <mat-option *ngFor="let brand of brands" [value]="brand.brand">
-              {{ brand.brand }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Marca</mat-label>
+            <mat-select formControlName="brand">
+              <mat-option *ngFor="let brand of brands" [value]="brand.brand">
+                {{ brand.brand }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Escala</mat-label>
-          <mat-select formControlName="scale" placeholder="Selecciona una escala">
-            <mat-option *ngFor="let scale of scales" [value]="scale">
-              {{ scale }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Escala</mat-label>
+            <mat-select formControlName="scale" placeholder="Selecciona una escala">
+              <mat-option *ngFor="let scale of scales" [value]="scale">
+                {{ scale }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Color</mat-label>
-          <input matInput formControlName="color">
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Color</mat-label>
+            <input matInput formControlName="color">
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Año</mat-label>
-          <input matInput type="number" formControlName="year">
-        </mat-form-field>
-      </div>
-    </mat-expansion-panel>
+          <mat-form-field appearance="outline">
+            <mat-label>Año</mat-label>
+            <input matInput type="number" formControlName="year">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-    <!-- Sección del Manufacturer -->
-    <mat-expansion-panel formGroupName="manufacturer">
-      <mat-expansion-panel-header>
-        <mat-panel-title>Fabricante</mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="section">
-        <mat-form-field appearance="outline">
-          <mat-label>Nombre del Fabricante</mat-label>
-          <input matInput formControlName="name">
-        </mat-form-field>
+      <mat-expansion-panel class="col" formGroupName="manufacturer">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Fabricante</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="section">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre del Fabricante</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>País del Fabricante</mat-label>
-          <input matInput formControlName="country">
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>País del Fabricante</mat-label>
+            <input matInput formControlName="country">
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Año del Fabricante</mat-label>
-          <input matInput type="number" formControlName="year">
-        </mat-form-field>
-      </div>
-    </mat-expansion-panel>
+          <mat-form-field appearance="outline">
+            <mat-label>Año del Fabricante</mat-label>
+            <input matInput type="number" formControlName="year">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+    </div>
 
-    <!-- Información Adicional -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Información Adicional</mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="section">
-        <mat-form-field appearance="outline">
-          <mat-label>Caja</mat-label>
-          <input matInput formControlName="case" maxlength="1" placeholder="Ej. A">
-        </mat-form-field>
+    <!-- Información Adicional y Serie en dos columnas -->
+    <div class="row">
+      <mat-expansion-panel class="col">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Información Adicional</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="section">
+          <mat-form-field appearance="outline">
+            <mat-label>Caja</mat-label>
+            <input matInput formControlName="case" maxlength="1" placeholder="Ej. A">
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Notas</mat-label>
-          <textarea matInput formControlName="annotation"></textarea>
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Notas</mat-label>
+            <textarea matInput formControlName="annotation"></textarea>
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Foto</mat-label>
-          <input matInput formControlName="photo">
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Foto</mat-label>
+            <input matInput formControlName="photo">
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Código</mat-label>
-          <input matInput formControlName="code">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Tipo</mat-label>
-          <mat-select formControlName="tag">
-            <mat-option *ngFor="let tag of tags" [value]="tag">
-              {{ tag }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        
-      </div>
-    </mat-expansion-panel>
+          <mat-form-field appearance="outline">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="code">
+          </mat-form-field>
 
-    <!-- Sección de Serie -->
-    <mat-expansion-panel formGroupName="series">
-      <mat-expansion-panel-header>
-        <mat-panel-title>Serie</mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="section">
-        <mat-form-field appearance="outline">
-          <mat-label>Serie</mat-label>
-          <input matInput formControlName="name">
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="tag">
+              <mat-option *ngFor="let tag of tags" [value]="tag">
+                {{ tag }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Número de serie</mat-label>
-          <input matInput formControlName="number">
-        </mat-form-field>
-      </div>
+      <mat-expansion-panel class="col" formGroupName="series">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Serie</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="section">
+          <mat-form-field appearance="outline">
+            <mat-label>Serie</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
 
-    </mat-expansion-panel>
+          <mat-form-field appearance="outline">
+            <mat-label>Número de serie</mat-label>
+            <input matInput formControlName="number">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+    </div>
 
     <button mat-raised-button color="primary" type="submit">Agregar Carro</button>
   </form>

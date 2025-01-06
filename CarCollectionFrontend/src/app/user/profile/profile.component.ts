@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/interfaces/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-  user: { id: string; email: string; username: string; photo: string; role: string } | null = null;
+  user: User| null = null;
 
   ngOnInit(): void {
     const userData = localStorage.getItem('userData');

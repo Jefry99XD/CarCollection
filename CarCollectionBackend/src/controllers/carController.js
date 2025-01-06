@@ -33,7 +33,6 @@ exports.createCar = async (req, res) => {
 exports.getCarsByUser = async (req, res) => {
   try {
     const { userId } = req.body;
-    console.log("Received userId:", userId);
 
     // Verifica si el userId es válido (puedes usar una validación extra si es necesario)
     if (!userId) {

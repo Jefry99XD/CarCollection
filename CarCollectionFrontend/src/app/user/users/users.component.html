@@ -1,1 +1,23 @@
-<p>users works!</p>
+<div class="user-cards-container" *ngIf="users.length > 0; else noData">
+    <mat-card class="user-card" *ngFor="let user of users">
+      <mat-card-header>
+        <div mat-card-avatar class="user-photo-container">
+          <img mat-card-avatar [src]="user.photo" alt="{{ user.username }}'s photo" />
+        </div>
+        <mat-card-title>{{ user.username }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Friends:</strong> {{ user.friendsCount }}</p>
+        <p><strong>Cars:</strong> {{ user.CarCollectionCount }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="button">View Collection</button>
+        <button mat-raised-button color="accent" type="button">Send Request</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
+  <ng-template #noData>
+    <p>No user data available.</p>
+  </ng-template>
+  
