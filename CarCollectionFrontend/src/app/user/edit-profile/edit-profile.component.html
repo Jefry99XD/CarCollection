@@ -1,0 +1,55 @@
+<div class="edit-container">
+  <div class="edit-profile-container">
+    <h2>Edit Profile</h2>
+    <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+      <!-- Campo Username -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Enter your username">
+        <mat-error *ngIf="editForm.get('username')?.invalid && editForm.get('username')?.touched">
+          Username is required and must be at least 3 characters.
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Campo Photo -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Photo URL</mat-label>
+        <input matInput formControlName="photo" placeholder="Enter photo URL" (input)="updatePhotoPreview()">
+        <mat-error *ngIf="editForm.get('photo')?.invalid && editForm.get('photo')?.touched">
+          Invalid photo URL.
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Preview de la Foto -->
+      <div class="photo-preview">
+        <h3>Photo Preview:</h3>
+        <img *ngIf="photoPreview" [src]="photoPreview" alt="Photo Preview" class="user-photo">
+      </div>
+  
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Password</mat-label>
+        <input matInput 
+               [type]="passwordVisible ? 'text' : 'password'" 
+               formControlName="password" 
+               placeholder="Enter new password (optional)" 
+               autocomplete="off">
+        <button mat-icon-button type="button" (click)="togglePasswordVisibility()" class="password-toggle-button">
+          <svg *ngIf="passwordVisible" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4C7.03 4 3 7.03 3 12s4.03 8 9 8 9-4.03 9-8-4.03-8-9-8zm0 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm1-4c0-.55-.45-1-1-1s-1 .45-1 1 .45 1 1 1 1-.45 1-1z"></path></svg>
+          <svg *ngIf="!passwordVisible" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4C7.03 4 3 7.03 3 12s4.03 8 9 8 9-4.03 9-8-4.03-8-9-8zm0 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg>
+        </button>
+        <mat-error *ngIf="editForm.get('password')?.invalid && editForm.get('password')?.touched">
+          Password must be at least 6 characters.
+        </mat-error>
+      </mat-form-field>
+      
+      
+      
+  
+      <!-- Botón Guardar -->
+      <button mat-raised-button color="primary" type="submit">Save Changes</button>
+    </form>
+  </div>
+  
+  
+  </div>
+  

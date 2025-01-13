@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -24,9 +24,6 @@ export class UserService {
       })
     );
   }
-  
-
-
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('userData'); 
@@ -41,5 +38,27 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl+`/getUsers`);
   }
+  editProfile(updatedData: { id: string, username: string; photo: string; password?: string }): Observable<any> {
+    const { username, photo, password } = updatedData;
+    const dataToUpdate: any = { username, photo };
+
+    if (password) {
+      dataToUpdate.password = password; // Solo incluir la contraseña si es que se proporciona
+    }
+
+    // Obtener el token de autenticación de localStorage
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No authentication token found');
+    }
+
+    // Configurar los encabezados con el token de autorización
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.apiUrl}/updateUser/${updatedData.id}`, dataToUpdate, { headers });
+  }
+  
 
 }

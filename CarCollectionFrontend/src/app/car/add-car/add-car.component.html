@@ -84,9 +84,16 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Foto</mat-label>
-            <input matInput formControlName="photo">
+            <mat-label>Foto (URL)</mat-label>
+            <input matInput formControlName="photo" (input)="onPhotoUrlChanged()" placeholder="Ingrese la URL de la foto">
           </mat-form-field>
+          
+          <!-- Vista previa de la foto -->
+          <div *ngIf="photoPreview">
+            <h3>Vista Previa:</h3>
+            <img [src]="photoPreview" alt="Car Photo" style="width: 200px; height: auto;">
+          </div>
+          
 
           <mat-form-field appearance="outline">
             <mat-label>Código</mat-label>

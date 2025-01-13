@@ -32,6 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { UsersComponent } from './user/users/users.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     NavbarComponent,
     HomeComponent,
     UsersComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

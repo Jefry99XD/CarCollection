@@ -4,14 +4,11 @@
     <h2 class="user-name">{{ user.username }}</h2>
     <p class="user-email"><strong>Email:</strong> {{ user.email}}</p>
     <p class="user-cars">
-      <strong>Cars:</strong> {{user.CarCollection}}
-      <button mat-raised-button color="accent" class="view-collection-button" type="button">View Collection</button>
+      <strong>Cars:</strong> {{ user.CarCollection?.length || 0 }}
     </p>
 
     <div class="button-group">
-      <button mat-raised-button color="primary" type="button">Update Profile</button>
-      <button mat-raised-button color="green" type="button">Send Friend Request</button>
-      <button mat-raised-button color="warn" type="button">Cancel</button>
+      <button mat-raised-button color="primary" type="button"routerLink="/editProfile" >Update Profile</button>
     </div>
   </div>
 

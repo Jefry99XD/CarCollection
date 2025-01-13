@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:3000/api/'  // URL base común de la API
+    apiUrl: 'http://26.175.250.106:3000/api/'  // URL base común de la API
   };
