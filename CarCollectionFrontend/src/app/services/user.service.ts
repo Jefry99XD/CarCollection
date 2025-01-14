@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../interfaces/user.model';
 
@@ -13,12 +13,21 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
+  private hasToken(): boolean {
+    return localStorage.getItem('token') !== null;
+  }
+  get isLoggedIn$() {
+    return this.loggedInSubject.asObservable();
+  }
+
   login(data: { username: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, data).pipe(
       map((response: any) => {
         if (response.token && response.user) {
           localStorage.setItem('token', response.token);
           localStorage.setItem('userData', JSON.stringify(response.user));
+          this.loggedInSubject.next(true);
         }
         return response;
       })

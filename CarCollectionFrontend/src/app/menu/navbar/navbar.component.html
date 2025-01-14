@@ -1,10 +1,20 @@
 <mat-toolbar color="primary" class="estilos">
-        <span class="toolbar-title">TUBA COLLECTORS</span>
-        <span class="spacer"></span>
-        <button mat-button routerLink="/dashboard" routerLinkActive="active">Inicio</button>
-        <button mat-button routerLink="/diecastCollection" routerLinkActive="active">My Collection</button>
-        <button mat-button routerLink="/profile-info" routerLinkActive="active">My Profile</button>
-        <button mat-button routerLink="/users" routerLinkActive="active">Users</button>
-        <button mat-button (click)="logout()">Logout</button>
-      </mat-toolbar>
-      
+  <span class="toolbar-title">TUBA COLLECTORS</span>
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/dashboard" routerLinkActive="active" class="nav-button">Inicio</button>
+  
+  <!-- Conditionally show the "My Collection" button if logged in -->
+  <button mat-button routerLink="/diecastCollection" routerLinkActive="active" class="nav-button" *ngIf="isLoggedIn">My Collection</button>
+
+  <!-- Conditionally show the "My Profile" button if logged in -->
+  <button mat-button routerLink="/profile-info" routerLinkActive="active" class="nav-button" *ngIf="isLoggedIn">My Profile</button>
+
+  <button mat-button routerLink="/users" routerLinkActive="active" class="nav-button">Users</button>
+
+  <!-- Conditionally show the "Login" button if not logged in -->
+  <button mat-button class="nav-button" *ngIf="!isLoggedIn" routerLink="/login">Login</button>
+
+  <!-- Conditionally show the "Logout" button if logged in -->
+  <button mat-button class="nav-button" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+</mat-toolbar>

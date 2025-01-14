@@ -1,30 +1,37 @@
-/* styles.css o en el componente .scss */
-.container {
-    padding: 20px; /* Añade espacio dentro del contenedor */
-    margin: 20px; /* Añade espacio en los bordes del contenedor */
-  }
-  
-  table {
-    width: 100%; /* Asegura que la tabla ocupe todo el espacio disponible */
-    margin-bottom: 20px; /* Añade espaciado en la parte inferior de la tabla */
-  }
-  
-  mat-paginator {
-    margin-top: 20px; /* Añade espacio arriba del paginador */
-  }
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  
-  .card {
-    width: 200px;
-    margin: 16px;
-  }
-  
-  mat-card {
-    width: 100%;
-  }
-  
-  
+.data-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Add spacing between sections */
+  height: 100%;
+  overflow-y: auto; /* Prevent overflow and allow scrolling */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-wrapper {
+  overflow-x: auto; /* Allow horizontal scrolling if the table overflows */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+mat-paginator {
+  margin-top: 10px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.card {
+  flex: 1 1 calc(25% - 16px); /* Adjust width and margin */
+  max-width: 250px;
+}

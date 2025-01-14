@@ -1,27 +1,37 @@
 <div class="container">
-  <!-- Botón para abrir el modal -->
-  <button mat-raised-button color="primary" (click)="openAddCarDialog()">Add new entry</button>
-
-  <!-- Botón para alternar la vista -->
-  <button mat-raised-button color="accent" (click)="toggleViewMode()">Toggle View</button>
-
-  <!-- Mostrar/ocultar columnas -->
-  <div>
-    <h3>Show/Hide</h3>
-    <mat-checkbox *ngFor="let column of allColumns" 
-                  [checked]="columnVisibility[column]" 
-                  (change)="toggleColumnVisibility(column)">
-      {{ column }}
-    </mat-checkbox>
+  <div class="header-container">
+    <h1>Collection Management</h1>
+    <div class="button-group">
+      <!-- Button to open modal -->
+      <button mat-raised-button color="primary" (click)="openAddCarDialog()">Add new entry</button>
+  
+      <!-- Button to toggle view -->
+      <button mat-raised-button color="accent" (click)="toggleViewMode()">Change to Card View</button>
+    </div>
   </div>
 
-  <!-- Vista de tabla -->
+
+  <!-- Show/Hide Columns -->
+<!-- Show/Hide Columns -->
+<div *ngIf="viewMode === 'table'">
+  <h3>Show/Hide Columns</h3>
+  <mat-checkbox *ngFor="let column of allColumns" 
+                [checked]="columnVisibility[column]" 
+                (change)="toggleColumnVisibility(column)">
+    {{ columnDisplayNames[column] }}
+  </mat-checkbox>
+</div>
+
+
+  <!-- Table View -->
   <table *ngIf="viewMode === 'table'" mat-table [dataSource]="dataSource">
+
+    <!-- Define dynamic columns -->
     <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-      <th mat-header-cell *matHeaderCellDef>{{ column | titlecase }}</th>
+      <th mat-header-cell *matHeaderCellDef>{{ columnDisplayNames[column] }}</th>
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="column === 'photo'">
-          <img [src]="element[column] || 'https://via.placeholder.com/150'" alt="Car Photo" width="50"/>
+          <img [src]="element[column] || 'https://via.placeholder.com/150'" alt="Car Photo" width="50" />
         </ng-container>
         <ng-container *ngIf="column !== 'photo'">
           {{ element[column] }}
@@ -29,11 +39,12 @@
       </td>
     </ng-container>
 
+    <!-- Table rows -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <!-- Vista de tarjetas -->
+  <!-- Card View -->
   <div *ngIf="viewMode === 'card'" class="card-container">
     <div class="card" *ngFor="let car of dataSource.data">
       <mat-card>
@@ -41,18 +52,21 @@
           <mat-card-title>{{ car.name }}</mat-card-title>
           <mat-card-subtitle>{{ car.brand }} - {{ car.manufacturer?.name }}</mat-card-subtitle>
         </mat-card-header>
-  
-        <!-- Foto del coche -->
+
         <mat-card-content>
           <img *ngIf="car.photo" [src]="car.photo" alt="Car Photo" width="100%" height="auto">
-          <p>Año: {{ car.year }}</p>
+          <p>{{ car.year }}</p>
+          <p>{{car.series.name}}</p>
           <p>{{ car.annotation }}</p>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
 
-  <!-- Paginación -->
-  <mat-paginator *ngIf="viewMode === 'table'" [length]="dataSource.data.length" [pageSize]="10" showFirstLastButtons></mat-paginator>
-
+  <!-- Paginator for Table View -->
+  <mat-paginator *ngIf="viewMode === 'table'" 
+                 [length]="dataSource.data.length" 
+                 [pageSize]="10" 
+                 showFirstLastButtons>
+  </mat-paginator>
 </div>

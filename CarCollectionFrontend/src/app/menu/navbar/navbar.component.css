@@ -1,24 +1,41 @@
 .estilos {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .toolbar-title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .spacer {
-    flex: 1 1 auto; /* Empuja los botones al final */
-  }
-  .active {
-    font-weight: bold;
-    color: #ffffff; /* Cambia según tu diseño */
-    border-bottom: 2px solid #ffcc00; /* Línea indicadora */
-  }
-  
-  button.mat-button.active {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo sutil */
-  }
-    
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0044cc;
+}
+
+.toolbar-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.spacer {
+  flex: 1 1 auto; /* Pushes buttons to the right */
+}
+
+.nav-button {
+  color: #ffffff;
+  font-size: 18px; /* Increase font size */
+  padding: 10px 20px; /* Increase padding for larger clickable area */
+  height: 48px; /* Adjust button height */
+  min-width: 120px; /* Set a minimum button width for uniformity */
+}
+.nav-button:not(.active) {
+  color: rgba(255, 255, 255, 0.5); /* Change color of inactive buttons */
+}
+
+.nav-button.active {
+  font-weight: bold;
+  color: #ffffff; /* Matches design theme */
+  border-bottom: 2px solid #ffcc00; /* Active indicator line */
+}
+
+button.mat-button.nav-button {
+  background-color: rgba(255, 255, 255, 0.1); /* Slight background highlight for all buttons */
+}
+
+button.mat-button.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.3); /* Hover effect */
+}

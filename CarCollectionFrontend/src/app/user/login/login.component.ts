@@ -28,6 +28,7 @@ export class LoginComponent {
           localStorage.setItem('token', response.token);
           // Redirige a una ruta segura (por ejemplo, el dashboard)
           this.router.navigate(['/dashboard']);
+           
         },
         error: (err) => {
           console.error('Login failed:', err);

@@ -18,27 +18,31 @@ export class CarViewComponent {
   cars$: Observable<Car[]> = this.store.pipe(select(getAllCars));
   dataSource: MatTableDataSource<Car> = new MatTableDataSource();
   viewMode: 'table' | 'card' = 'table'; 
-  allColumns: string[] = [
-    'name', 'brand', 'scale', 'manufacturerName', 'manufacturerCountry', 'manufacturerYear', 
-    'year', 'case', 'color', 'photo', 'code', 'tag', 'seriesName', 'seriesNumber', 'annotation'
-  ];
-  columnVisibility: { [key: string]: boolean } = {
-    name: true,
-    brand: true,
-    scale: true,
-    manufacturerName: true,
-    manufacturerCountry: true,
-    manufacturerYear: true,
-    year: true,
-    case: true,
-    color: true,
-    photo: true,
-    code: true,
-    tag: true,
-    seriesName: true,
-    seriesNumber: true,
-    annotation: true
+
+  // Column keys and display names
+  columnDisplayNames: { [key: string]: string } = {
+    Name: 'Car Name',
+    Brand: 'Car Brand',
+    Scale: 'Scale',
+    manufacturerName: 'Manufacturer Name',
+    manufacturerCountry: 'Manufacturer Country',
+    manufacturerYear: 'Manufacturer Year',
+    Year: 'Year',
+    Case: 'Case Type',
+    Color: 'Car Color',
+    Photo: 'Photo URL',
+    Code: 'Car Code',
+    Tag: 'Tag',
+    seriesName: 'Series Name',
+    seriesNumber: 'Series Number',
+    Annotation: 'Annotation'
   };
+
+  allColumns: string[] = Object.keys(this.columnDisplayNames);
+  columnVisibility: { [key: string]: boolean } = this.allColumns.reduce(
+    (acc, column) => ({ ...acc, [column]: true }),
+    {}
+  );
   displayedColumns: string[] = [...this.allColumns];
 
 
@@ -86,7 +90,6 @@ export class CarViewComponent {
     this.updateDisplayedColumns();
   }
 
-  // Actualiza la lista de columnas mostradas
   updateDisplayedColumns(): void {
     this.displayedColumns = Object.keys(this.columnVisibility).filter(
       column => this.columnVisibility[column]
