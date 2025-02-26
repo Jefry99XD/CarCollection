@@ -27,7 +27,7 @@ export class LoginComponent {
           // Guarda el token en el almacenamiento local
           localStorage.setItem('token', response.token);
           // Redirige a una ruta segura (por ejemplo, el dashboard)
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/profile-info']);
            
         },
         error: (err) => {
